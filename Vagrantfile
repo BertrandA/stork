@@ -2,6 +2,12 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
+
+  config.vm.define "ubuntu1604" do |guest|
+    guest.vm.box = "gbarbieru/xenial"
+    guest.vm.provision :shell, inline: "apt-get update; apt-get install -y openjdk-8-jre-headless unzip curl;"
+  end
+
   config.vm.define "ubuntu1404" do |guest|
     guest.vm.box = "minimal/trusty64"
     guest.vm.provision :shell, inline: "apt-get update; apt-get install -y openjdk-7-jre-headless unzip curl;"
